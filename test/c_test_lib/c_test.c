@@ -138,7 +138,7 @@ Returns:
 Assumptions/Limitations:
     None
 ------------------------------------------------------------------------------*/
-float abs_fl32(float x);
+static float abs_fl32(float x);
 
 /*
 --|----------------------------------------------------------------------------|
@@ -293,7 +293,7 @@ void C_Test_Show_Test_Results_In_Terminal(void)
 --|----------------------------------------------------------------------------|
 */
 
-float abs_fl32(float x)
+static float abs_fl32(float x)
 {
     return x > 0.0f ? x : x * -1.0f;
 }
