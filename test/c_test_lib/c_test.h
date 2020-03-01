@@ -112,6 +112,8 @@ Assumptions/Limitations:
 ------------------------------------------------------------------------------*/
 void C_Test_Initialize(void);
 
+
+
 /*------------------------------------------------------------------------------
 Function Name:
     C_Test_Configure_Output_Mode
@@ -135,6 +137,8 @@ Assumptions/Limitations:
 ------------------------------------------------------------------------------*/
 void C_Test_Configure_Output_Mode(c_test_output_mode_enum_t output_mode_enum);
 
+
+
 /*------------------------------------------------------------------------------
 Function Name:
     C_Test_Start_Next_Test_Case
@@ -155,6 +159,8 @@ Assumptions/Limitations:
 ------------------------------------------------------------------------------*/
 void C_Test_Start_Next_Test_Case(const char * description);
 
+
+
 /*------------------------------------------------------------------------------
 Function Name:
     C_Test_Add_Description_To_Next_Comparison
@@ -172,6 +178,8 @@ Assumptions/Limitations:
     The given description must be less than MAX_TEST_DESCRIPTION_LENGTH.
 ------------------------------------------------------------------------------*/
 void C_Test_Add_Description_To_Next_Comparison(const char * description);
+
+
 
 /*------------------------------------------------------------------------------
 Function Name:
@@ -192,6 +200,8 @@ Assumptions/Limitations:
     None
 ------------------------------------------------------------------------------*/
 bool C_Test_Assert_Equals_ui32(uint32_t expected, uint32_t actual);
+
+
 
 /*------------------------------------------------------------------------------
 Function Name:
@@ -215,6 +225,8 @@ Assumptions/Limitations:
     None
 ------------------------------------------------------------------------------*/
 bool C_Test_Assert_Equals_fl32(float expected, float actual, float epsilon);
+
+
 
 /*------------------------------------------------------------------------------
 Function Name:
