@@ -1,30 +1,52 @@
+/*
+--|----------------------------------------------------------------------------|
+--| FILE DESCRIPTION:
+--|   c_test.c provides the implementation for the simple c_test framework.
+--|  
+--|----------------------------------------------------------------------------|
+--| NOTES:
+--|   None.
+--|  
+--|----------------------------------------------------------------------------|
+--| REFERENCES:
+--|   None.
+--|
+--|----------------------------------------------------------------------------|
+*/
+
+/*
+--|----------------------------------------------------------------------------|
+--| INCLUDE FILES
+--|----------------------------------------------------------------------------|
+*/
 
 #include "c_test.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 /*
---|--------------------------------------------------------|
---|
---| Private C Test Defines
---|
---|---------------------------------------------------------|
+--|----------------------------------------------------------------------------|
+--| PRIVATE DEFINES
+--|----------------------------------------------------------------------------|
 */
 
+/*
+--| NAME: MAX_COMPARISON_FEILD_LENGTH
+--| DESCRIPTION: the maximum string length of a comparison description
+--| TYPE: unsigned integer
+*/
 #define MAX_COMPARISON_FEILD_LENGTH 16u
 
-
-
 /*
---|--------------------------------------------------------|
---|
---| Private C Test Types
---|
---|---------------------------------------------------------|
+--|----------------------------------------------------------------------------|
+--| PRIVATE TYPES
+--|----------------------------------------------------------------------------|
 */
 
+/*
+--| NAME: c_test_comparison_t
+--| DESCRIPTION: storage for a single test comparison
+*/
 typedef struct c_test_comparison_type
 {
     char description[MAX_TEST_DESCRIPTION_LENGTH];
@@ -33,8 +55,10 @@ typedef struct c_test_comparison_type
     bool result;
 } c_test_comparison_t;
 
-
-
+/*
+--| NAME: c_test_case_t
+--| DESCRIPTION: storage for a test case, which consists of many comparisons
+*/
 typedef struct c_test_case_type
 {
     char description[MAX_TEST_DESCRIPTION_LENGTH];
@@ -43,54 +67,83 @@ typedef struct c_test_case_type
     uint32_t num_failing_comparisons;
 } c_test_case_t;
 
-
 /*
---|--------------------------------------------------------|
---|
---| Private C Test Variables
---|
---|---------------------------------------------------------|
+--|----------------------------------------------------------------------------|
+--| PRIVATE VARIABLES
+--|----------------------------------------------------------------------------|
 */
 
-// array of test cases, each contains an array of test comparisons
+/*
+--| NAME: c_test_case_t
+--| DESCRIPTION: array of test cases, each contains an array of test comparisons
+--| TYPE: c_test_case_t[]
+*/
 static c_test_case_t test_cases[MAX_NUM_TEST_CASES];
 
-// the current test case number, each test case is made up of a number of test comparisons
+/*
+--| NAME: Test_Case_Number
+--| DESCRIPTION: the current test case number, each test case is made up of a 
+--|   number of test comparisons
+--| TYPE: uint32_t
+*/
 static uint32_t Test_Case_Number;
 
-// the total number of comparisons done
+/*
+--| NAME: Total_Num_Comparisons
+--| DESCRIPTION: the total number of comparisons done so far
+--| TYPE: uint32_t
+*/
 static uint32_t Total_Num_Comparisons;
 
-// the current number of comparisons that have passed
+/*
+--| NAME: Total_Num_Passing_Comparisons
+--| DESCRIPTION: the current number of comparisons that have passed
+--| TYPE: uint32_t
+*/
 static uint32_t Total_Num_Passing_Comparisons;
 
-// the current number of comparisons that have failed
+/*
+--| NAME: Total_Num_Failing_Comparisons
+--| DESCRIPTION: the current number of comparisons that have failed
+--| TYPE: uint32_t
+*/
 static uint32_t Total_Num_Failing_Comparisons;
 
-// the output mode, show all or only show failing
+/*
+--| NAME: c_test_output_mode_enum_t
+--| DESCRIPTION: the output mode, show all or only show failing
+--| TYPE: c_test_output_mode_enum_t
+*/
 static c_test_output_mode_enum_t output_mode;
 
-
-
 /*
---|--------------------------------------------------------|
---|
---| Private C Test Helper Function Declarations
---|
---|---------------------------------------------------------|
+--|----------------------------------------------------------------------------|
+--| PRIVATE HELPER FUNCTION PROTOTYPES
+--|----------------------------------------------------------------------------|
 */
 
-// return the absolute value of the given float 
+/*------------------------------------------------------------------------------
+Function Name:
+    abs_fl32
+
+Function Description:
+    Return the absolute value of the given float. 
+
+Parameters:
+    x: the float to take the abs of.
+
+Returns:
+    float: the abs(x)
+
+Assumptions/Limitations:
+    None
+------------------------------------------------------------------------------*/
 float abs_fl32(float x);
 
-
-
 /*
---|--------------------------------------------------------|
---|
---| Public Function Definitions
---|
---|---------------------------------------------------------|
+--|----------------------------------------------------------------------------|
+--| PUBLIC FUNCTION DEFINITIONS
+--|----------------------------------------------------------------------------|
 */
 
 void C_Test_Initialize(void)
@@ -234,14 +287,10 @@ void C_Test_Show_Test_Results_In_Terminal(void)
     printf("\n---| Test %s\n\n", Total_Num_Failing_Comparisons == 0u ? "PASSED" : "FAILED");
 }
 
-
-
 /*
---|--------------------------------------------------------|
---|
---| Private C Test Helper Function Definitions
---|
---|---------------------------------------------------------|
+--|----------------------------------------------------------------------------|
+--| PRIVATE HELPER FUNCTION DEFINITIONS
+--|----------------------------------------------------------------------------|
 */
 
 float abs_fl32(float x)
